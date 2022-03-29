@@ -1,8 +1,33 @@
+body{
+    text-align: center;
+    color:cadetblue
+}
+
 .container{
     width:1200px;
     margin: auto;
 }
 
+
 td{
     border: 1px solid;
 }
+
+.cars {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .cars td, 
+  .cars th {
+    border: 1px solid #c1c7c5;
+    padding: 8px;
+  }
+  
+  .cars th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #c1c7c5;
+    color: white;
+  }
