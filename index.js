@@ -1,13 +1,18 @@
 // referenced the html element
 const carsElem = document.querySelector('.cars');
+const colorElem = document.querySelector('.colors');
+const carMakeElem = document.querySelector('.carMake');
+const carModelElem = document.querySelector('.carModel');
 
 const carBrandsElem = document.querySelector('.carBrands');
 const carColorsElem = document.querySelector('.carColors');
-const btnElem = document.querySelector('.btn');
+const submitbtnElem = document.querySelector('.submitbtn');
+const DisplaychosenCarElem = document.getElementsByClassName('.DisplaychosenCar');
 
-// axios link and display data
-axios.get("https://api-tutor.herokuapp.com/v1/cars").then(function(result){
-    console.log(result.data);
+
+const carData = async ()=>{
+    // axios link and display data
+    axios.get("https://api-tutor.herokuapp.com/v1/cars").then(function(result){
 
     result.data.forEach(car => {
         const tableElement = document.createElement('tr');
@@ -21,27 +26,96 @@ axios.get("https://api-tutor.herokuapp.com/v1/cars").then(function(result){
 
     });
 })
+}
 
-axios.get("https://api-tutor.herokuapp.com/v1/cars").then(function(result){
-    console.log(result.data);
+carData();
+// ------------------------
+const Colours = async ()=>{
+    // axios link and display data
+    axios.get("http://api-tutor.herokuapp.com/v1/colors").then(function(result){
+
+    result.data.forEach(color => {
+        const displayColor = document.createElement('tr');
+        
+        displayColor.innerHTML = `<tr>
+            <td>${color}</td>
+        </tr>`
+    colorElem.appendChild(displayColor);
+
+    });
+})
+}
+
+Colours();
+
+const Makes = async ()=>{
+    // axios link and display data
+    axios.get("http://api-tutor.herokuapp.com/v1/makes").then(function(result){
+
+    result.data.forEach(carMake => {
+        const displayCarMake = document.createElement('tr');
+        
+        displayCarMake.innerHTML = `<tr>
+            <td>${carMake}</td>
+        </tr>`
+    carMakeElem.appendChild(displayCarMake);
+
+    });
+})
+}
+
+Makes();
+
+// -----------------------
+
+const dataFun = async ()=>{
+    axios.get("https://api-tutor.herokuapp.com/v1/cars").then(function(result){
+        // console.log(result.data);
     
-    result.data.forEach(eachCar => {
+    result.data.forEach(car => {
         const filterElem = document.createElement('option');
     
         filterElem.innerHTML = `<select>
-            <option>${eachCar.make}</option>
+            <option>${car.make}</option>
         </select>`
+        console.log(filterElem);
         carBrandsElem.appendChild(filterElem);
+        console.log(carBrandsElem.appendChild(filterElem));
         
     });
 
-    result.data.forEach(eachCar => {
+    result.data.forEach(car => {
         const filterElem = document.createElement('option');
     
         filterElem.innerHTML = `<select>
-            <option>${eachCar.color}</option>
+            <option>${car.color}</option>
         </select>`
+        console.log(filterElem);
         carColorsElem.appendChild(filterElem);
         
     });
+
 })
+}
+
+dataFun();
+
+const displayCars = ()=>{
+    let results = [];
+
+    let brand = carBrandsElem.value;
+    let colour = carColorsElem.value;
+
+    if(brand !== '' && colour !== ''){
+        results.push(colour + ' ' + brand);
+    }
+    console.log(results);
+
+    console.log(brand);
+    console.log(colour);
+
+}
+
+displayCars();
+
+submitbtnElem.addEventListener('click', displayCars);
