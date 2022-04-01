@@ -41,6 +41,14 @@ td{
     color: white;
   }
 
+  /* Media Queries */
+  @media screen and (max-width: 600px) {
+    .full-width-mobile{
+      width: 100%;
+    }
+    
+  }
+
   /* table{
     display: inline-block;
   } */
