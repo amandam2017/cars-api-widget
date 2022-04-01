@@ -33,11 +33,10 @@ const Colours = async ()=>{
     axios.get("http://api-tutor.herokuapp.com/v1/colors").then(function(result){
 
     result.data.forEach(color => {
-        const displayColor = document.createElement('tr');
+        const displayColor = document.createElement('li');
+        displayColor.className = 'list-group-item';
         
-        displayColor.innerHTML = `<tr>
-            <td>${color}</td>
-        </tr>`
+        displayColor.innerHTML = `${color}`
     colorElem.appendChild(displayColor);
 
     });
@@ -51,11 +50,10 @@ const Makes = async ()=>{
     axios.get("http://api-tutor.herokuapp.com/v1/makes").then(function(result){
 
     result.data.forEach(carMake => {
-        const displayCarMake = document.createElement('tr');
+        const displayCarMake = document.createElement('li');
+        displayCarMake.className = 'list-group-item';
         
-        displayCarMake.innerHTML = `<tr>
-            <td>${carMake}</td>
-        </tr>`
+        displayCarMake.innerHTML = `${carMake}`
     carMakeElem.appendChild(displayCarMake);
 
     });

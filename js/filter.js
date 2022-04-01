@@ -2,7 +2,7 @@ const carBrandsElem = document.querySelector('.carBrands');
 const carColorsElem = document.querySelector('.carColors');
 const submitbtnElem = document.querySelector('.submitbtn');
 const DisplaychosenCarElem = document.querySelector('.DisplaychosenCar');
-const colorElem = document.querySelector('.color');
+// const colorElem = document.querySelector('.color');
 
 // const DisplaychosenCarElem = document.querySelector('.DisplaychosenCar');
 // const DisplaychosenCarElem = document.querySelector('.DisplaychosenCar');
@@ -13,27 +13,30 @@ const colorElem = document.querySelector('.color');
 // -----------------------
 
 const dataFun = async ()=>{
-    axios.get("https://api-tutor.herokuapp.com/v1/cars").then(function(result){
+
+    axios.get("https://api-tutor.herokuapp.com/v1/makes").then(function(result){
         console.log(result.data);
     
-    result.data.forEach(car => {
+    result.data.forEach(make => {
         const filterElem = document.createElement('option');
     
-        filterElem.innerHTML = `<select>
-            <option>${car.make}</option>
-        </select>`
+        filterElem.innerHTML = `${make}`
         console.log(filterElem);
         carBrandsElem.appendChild(filterElem);
         console.log(carBrandsElem.appendChild(filterElem));
         
     });
 
-    result.data.forEach(car => {
+})
+
+axios.get("http://api-tutor.herokuapp.com/v1/colors").then(function(result){
+        console.log(result.data);
+
+
+    result.data.forEach(color => {
         const filterElem = document.createElement('option');
     
-        filterElem.innerHTML = `<select>
-            <option>${car.color}</option>
-        </select>`
+        filterElem.innerHTML = `${color}`
         console.log(filterElem);
         carColorsElem.appendChild(filterElem);
         
@@ -48,7 +51,7 @@ dataFun();
 
 const displayCars = ()=>{
 
-    DisplaychosenCarElem.innerHTML ='';
+    // DisplaychosenCarElem.innerHTML ='';
 
     let brand = carBrandsElem.value;
     let colour = carColorsElem.value;
@@ -57,25 +60,24 @@ const displayCars = ()=>{
         // results = `${colour} ${brand}`;
     }
     
-    const url = `https://api-tutor.herokuapp.com/v1/cars`
+    const url = `https://api-tutor.herokuapp.com/v1/cars/make/${brand}/color/${colour}`
     axios.get(url).then(function(result){
+        carsElem.innerHTML = '';
     let cars = result.data;
+    cars.forEach(car => {
+        const tableElement = document.createElement('tr');
+        tableElement.className = 'remove'
+        tableElement.innerHTML = `<tr>
+            <td>${car.model}</td>
+            <td>${car.color}</td>
+            <td>${car.make}</td>
+            <td>${car.price}</td>
+            <td>${car.reg_number}</td>
 
-    cars.map((car)=>{
-        if(car.color === colour && car.make === brand){
+        </tr>`
+    carsElem.appendChild(tableElement);
 
-            console.log(car);
-            const carData = document.createElement('li');
-            carData.innerHTML = `${car.model} ${car.make} ${car.color} ${car.price} ${car.reg_number}`;
-            // carData.innerHTML = car.make;
-            // carData.innerHTML = car.color;
-            // carData.innerHTML = car.price;
-            // carData.innerHTML = car.reg_number;
-
-            DisplaychosenCarElem.appendChild(carData);
-            
-        }
-    })
+    });
 
 })
 // https://api-tutor.herokuapp.com/v1/cars/color/Orange

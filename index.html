@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,8 +11,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
     <title>API's First Widget</title>
 </head>
+
 <body>
     <div class="container">
+
         <div class="row">
             <div class="header_section">
                 <h1>My First Api widget</h1>
@@ -19,30 +22,62 @@
             </div>
         </div>
 
-       <div class="row">
-        <div class="col-md-3">
-            <table class="colors">
-                <th>Colors</th>
-    
-            </table>
-           </div>
+
+
+        <div class="row">
             <div class="col-md-3">
-                <table class="carMake">
-                    <th>Brands</th>
-        
-                </table>
+                <ul class="list-group colors">
+                    <h5>Colors</h5>
+
+                </ul>
+                <!-- </div>
+            <div class="col-md-3"> -->
+                <ul class="list-group carMake">
+                    <h5>Brands</h5>
+
+                </ul>
             </div>
 
-        <table class="cars col-md-6">
-            <th>Cars</th>
-            <th>Colors</th>
-            <th>Models</th>
-            <th>Price</th>
-            <th>Reg Numbers</th>
-        </table>
-       </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md">
+                        <select class="form-select carBrands">
+
+                        </select>
+                    </div>
+
+                    <div class="col-md">
+                        <select class="form-select carColors">
+
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <button class="btn btn-secondary submitbtn">Submit</button>
+
+                    </div>
+                </div>
+                <hr>
+                <table class="col-md-12">
+                        <thead>
+                            <tr>
+                            <th>Cars</th>
+                            <th>Colors</th>
+                            <th>Models</th>
+                            <th>Price</th>
+                            <th>Reg Numbers</th>
+                            </tr>
+                        </thead>
+                        <tbody class="cars"></tbody>
+
+                </table>
+            </div>
+        </div>
+
     </div>
-    
+
     <script src="js/index.js"></script>
+    <script src="js/filter.js"></script>
 </body>
+
 </html>
