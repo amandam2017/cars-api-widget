@@ -8,6 +8,15 @@ body{
     margin: auto;
 }
 
+.header_section{
+  margin: 25px 0 50px 0;
+  border: 1px solid;
+}
+
+li{
+  list-style-type: none;
+}
+
 
 td{
     border: 1px solid;
@@ -15,7 +24,7 @@ td{
 
 .cars {
     border-collapse: collapse;
-    width: 100%;
+    /* width: 100%; */
   }
   
   .cars td, 
@@ -31,3 +40,7 @@ td{
     background-color: #c1c7c5;
     color: white;
   }
+
+  /* table{
+    display: inline-block;
+  } */
